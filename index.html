@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+    <meta name="description" content="Mapty app - Javascript" />
+    <meta property="og:title" content="Mapty app with OOP by CodePapa360" />
+    <meta
+      property="og:description"
+      content="Mapty app with OOP- coded by Alamin"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/CodePapa360/Mapty-app/main/Screenshot-Mapty__Map your workouts.png"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://kit.fontawesome.com/b3b298ed40.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+    <script defer src="script.js"></script>
+    <title>mapty // Map your workouts</title>
+  </head>
+  <body>
+    <div class="sidebar">
+      <img src="logo.png" alt="Logo" class="logo" />
+      <div class="custom__btns hidden">
+        <button class="custom__btn btn--reset">Remove all</button>
+      </div>
+
+      <ul class="workouts">
+        <form class="form hidden">
+          <div class="form__row">
+            <label class="form__label">Type</label>
+            <select class="form__input form__input--type">
+              <option value="running">Running</option>
+              <option value="cycling">Cycling</option>
+            </select>
+          </div>
+          <div class="form__row">
+            <label class="form__label">Distance</label>
+            <input class="form__input form__input--distance" placeholder="km" />
+          </div>
+          <div class="form__row">
+            <label class="form__label">Duration</label>
+            <input
+              class="form__input form__input--duration"
+              placeholder="min"
+            />
+          </div>
+          <div class="form__row">
+            <label class="form__label">Cadence</label>
+            <input
+              class="form__input form__input--cadence"
+              placeholder="step/min"
+            />
+          </div>
+          <div class="form__row form__row--hidden">
+            <label class="form__label">Elev Gain</label>
+            <input
+              class="form__input form__input--elevation"
+              placeholder="meters"
+            />
+          </div>
+          <button class="form__btn">OK</button>
+        </form>
+      </ul>
+
+      <p class="copyright">
+        &copy; Copyright by
+        <a
+          class="twitter-link"
+          target="_blank"
+          href="https://twitter.casschmedtman"
+          >Yash Arora</a
+        >
+      </p>
+    </div>
+
+    <div id="map"></div>
+    <!-- Weather part to show the weather condition of all cities across the world -->
+    <div class="app-wrap">
+      <header>
+        <input
+          type="text"
+          autocomplete="on"
+          class="search-box"
+          placeholder="Search for a place..."
+        />
+      </header>
+      <main>
+        <section class="location">
+          <div class="city"><span class="colorChange">Name</span></div>
+          <div class="date">Day and Date--</div>
+        </section>
+        <div class="current">
+          <div class="temp">
+            <span class="colorChange">0</span
+            ><span class="colorChange">°c</span>
+          </div>
+          <div class="weather">
+            <span class="colorChange">Weather Condition</span>
+          </div>
+          <div class="hi-low">higher-0°c / lower-0°c</div>
+        </div>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
