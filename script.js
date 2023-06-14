@@ -18,9 +18,8 @@ class Workout {
     // prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
-      months[this.date.getMonth()]
-    } ${this.date.getDate()}`;
+    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${months[this.date.getMonth()]
+      } ${this.date.getDate()}`;
   }
 }
 
@@ -120,7 +119,7 @@ class App {
 
     this.#map = L.map("map").setView(coords, this.#mapZoomLevel);
 
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
@@ -143,9 +142,8 @@ class App {
     //empty inputs
     inputDistance.value =
       inputDuration.value =
-      inputCadence.value =
       inputElevation.value =
-        "";
+      "";
     form.style.display = "none";
     setTimeout(() => {
       form.style.display = "grid";
@@ -156,7 +154,7 @@ class App {
   //Toggleing the elevation form
   _toggleElevationField() {
     inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
-    inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
+    // inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
   }
 
   _showCustomButtons() {
@@ -181,7 +179,7 @@ class App {
 
     //If workout is Running, create Running object
     if (type === "running") {
-      const cadence = +inputCadence.value;
+      const cadence = (+inputDistance.value)*1250;
 
       //Check if the data is valid
       if (
@@ -196,7 +194,7 @@ class App {
 
     //If workout is Cycling, create Cycling object
     if (type === "cycling") {
-      const elevation = +inputCadence.value;
+      const elevation = +inputElevation.value;
 
       //Check if the data is valid
       if (
@@ -258,7 +256,7 @@ class App {
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
           <h2 class="workout__title">${workout.description}</h2>
           <div class="workout__btns">
-            <button class="workout__btn workout__btn--edit">
+            <button class="workout__btn">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
             <button class="workout__btn workout__btn--delete">
@@ -266,9 +264,8 @@ class App {
             </button>
           </div>
           <div class="workout__details">
-            <span class="workout__icon">${
-              workout.type === "running" ? "🏃" : "🚴"
-            }</span>
+            <span class="workout__icon">${workout.type === "running" ? "🏃" : "🚴"
+      }</span>
             <span class="workout__value">${workout.distance}</span>
             <span class="workout__unit">km</span>
           </div>
@@ -397,21 +394,22 @@ searchbox.addEventListener('keypress', setQuery);
 
 function setQuery(evt) {
   if (evt.keyCode == 13) {
-      getResults(searchbox.value);
+    getResults(searchbox.value);
   }
 }
 
 function getResults(query) {
   fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-      .then(weather => {
-          return weather.json();
-      })
-      .then(displayResults);
+    .then(weather => {
+      
+      return weather.json();
+    })
+    .then(displayResults);
 }
 
 function getPositionFromCord(lat, lon) {
   fetch(`${api.base}weather?lat=${lat}&lon=${lon}&units=metric&APPID=${api.key}`).then(weather => {
-      return weather.json();
+    return weather.json();
   }).then(displayResults)
 
 }
@@ -433,33 +431,33 @@ function displayResults(weather) {
 
   let hilow = document.querySelector('.hi-low');
   hilow.innerText = `${Math.round(weather.main.temp_min)}°c(min) / ${Math.round(
-      weather.main.temp_max
+    weather.main.temp_max
   )}°c(max)`;
 }
 
 function dateBuilder(d) {
   let months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
   let days = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
 
   let day = days[d.getDay()];
